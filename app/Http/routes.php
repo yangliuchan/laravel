@@ -61,7 +61,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('info', 'AdminController@postInformation');
     Route::post('changePassword', 'AdminController@changePassword');
 
-    Route::get('templateList','AdminController@selectTemplate');
+    Route::get('template','AdminController@selectTemplate');
 
     Route::post('changeTemplate','AdminController@changeTemplate');
 

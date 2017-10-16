@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Form extends Model
+class Company extends Model
 {
     // 指定表名
     protected $table = 'company';

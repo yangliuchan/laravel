@@ -15,7 +15,24 @@
 //    return view('welcome');
 //});
 
-Route::get('/', 'IndexController@index');
+Route::group(['domain' => '{domain}.abc.com'], function (){
+    Route::get('/',function ($domain){
+        if($domain != 'www'){
+            $user = \App\Company::where('domain','=',$domain) -> first();  // 返回单条记录;
+            $template = \App\Template::where('id','=',$user -> tid) -> first();
+            //dd($template);
+            return view('template.dianpu001.index')->with('name',$template -> name);
+
+        }else{
+            return view('index');
+        }
+    });
+
+});
+
+
+
+
 
 
 //Route::post('/login', 'Auth\AuthController@postLogin');
@@ -34,6 +51,7 @@ Route::get('/', 'IndexController@index');
 
 
 
+
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
@@ -43,7 +61,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('info', 'AdminController@postInformation');
     Route::post('changePassword', 'AdminController@changePassword');
 
-    Route::get('template','AdminController@selectTemplate');
+    Route::get('templateList','AdminController@selectTemplate');
 
     Route::post('changeTemplate','AdminController@changeTemplate');
 

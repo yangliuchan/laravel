@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Form;
+use App\Company;
 use App\Template;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +25,7 @@ class AdminController extends Controller
 
         $user = request()->user()['attributes'];
 
-        $company = Form::where('uid',$user['uid'])->first();
+        $company = Company::where('uid',$user['uid'])->first();
 
         $url = $request->url();
         //dd($url);
@@ -44,7 +44,7 @@ class AdminController extends Controller
         //dd( $postInput );
 
         $this -> user = request()->user()['attributes'];
-        $company = Form::updateOrCreate(
+        $company = Company::updateOrCreate(
             ['uid' => $this -> user['uid']],
             [
                 'co_name' => $postInput['co_name'],
@@ -108,14 +108,14 @@ class AdminController extends Controller
     public function selectTemplate(Request $request){
         $templates = Template::all();
         $user = Auth::user();
-        $company = Form::find($user -> uid);
+        $company = Company::find($user -> uid);
         return view('admin.template', compact('templates','company'));
     }
 
     public function changeTemplate(Request $request){
         $post = $request -> input();
         $user = Auth::user();
-        $company = Form::find($user -> uid);
+        $company = Company::find($user -> uid);
         $company -> tid = $post['tid'];
         $bool = $company -> save();
         echo json_encode($bool);

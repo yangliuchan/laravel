@@ -108,7 +108,7 @@ class AdminController extends Controller
     public function selectTemplate(Request $request){
         $templates = Template::all();
         $user = Auth::user();
-        $company = Company::find($user -> uid);
+        $company = Company::where('uid','=',$user -> uid) -> first();
         return view('admin.template', compact('templates','company'));
     }
 

@@ -115,7 +115,7 @@ class AdminController extends Controller
     public function changeTemplate(Request $request){
         $post = $request -> input();
         $user = Auth::user();
-        $company = Company::find($user -> uid);
+        $company = Company::where('uid','=',$user -> uid) -> first();
         $company -> tid = $post['tid'];
         $bool = $company -> save();
         echo json_encode($bool);

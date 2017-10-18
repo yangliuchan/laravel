@@ -19,9 +19,14 @@ Route::group(['domain' => '{domain}.abc.com'], function (){
     Route::get('/',function ($domain){
         if($domain != 'www'){
             $user = \App\Company::where('domain','=',$domain) -> first();  // 返回单条记录;
-            $template = \App\Template::where('id','=',$user -> tid) -> first();
-            //dd($template);
-            return view('template.dianpu001.index')->with('name',$template -> name);
+            if($user){
+                $template = \App\Template::where('id','=',$user -> tid) -> first();
+                //dd($template);
+                return view('template.'.$template -> name.'.index')->with('name',$template -> name);
+
+            }else{
+                return view('welcome')->with('msg',$domain);
+            }
 
         }else{
             return view('index');

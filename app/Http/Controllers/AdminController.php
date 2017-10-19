@@ -120,4 +120,18 @@ class AdminController extends Controller
         $bool = $company -> save();
         echo json_encode($bool);
     }
+
+    public function editShop(Request $request){
+
+        $user = Auth::user();  // 返回单条记录;
+        $company = Company::where('uid','=',$user -> uid) -> first();
+        $template = Template::where('id','=',$company -> tid) -> first();
+        if($template){
+            //dd($template);
+            return view('template.'.$template -> name.'.index')->with('name',$template -> name);
+
+        }else{
+            return view('welcome')->with('msg','dsads');
+        }
+    }
 }

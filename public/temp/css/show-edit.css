@@ -1,0 +1,22 @@
+/*
+ 编辑店铺时，显示编辑按钮的样式
+*/
+
+.show-edit-button{
+    position: relative;
+    border: 2px cornflowerblue dashed;
+    box-sizing: border-box;
+}
+
+.edit-button{
+    position: absolute;
+    top:0;
+    right:0;
+    font-size: 12px;
+    color: #fff;
+    background: #0d6895;
+    border:0;
+    opacity: 0.5;
+    display: none;
+    z-index: 99;
+}

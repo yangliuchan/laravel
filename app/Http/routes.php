@@ -70,7 +70,7 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::post('changeTemplate','AdminController@changeTemplate');
 
-    Route::get('shop','PromptController@index');
+    Route::get('shop','AdminController@editShop');
 
     Route::get('prompt','PromptController@index');
 

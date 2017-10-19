@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="{{ url('/temp').'/'.$name }}/css/flexslider.css" />
     <link rel="stylesheet" href="{{ url('/temp').'/'.$name }}/css/custom-styles.css">
 
+    <link rel="stylesheet" href="{{ url('/temp')}}/css/show-edit.css">
+
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <link rel="stylesheet" href="{{ url('/temp').'/'.$name }}/css/style-ie.css"/>
@@ -79,7 +81,7 @@
         <!-- Logo
         ================================================== -->
         <div class="span5 logo">
-            <a href="index.htm">
+            <a href="index.htm" class="showEdit">
                 <!--<img src="{{ url('/temp').'/'.$name }}/img/piccolo-logo.png" alt="" />-->
                 康芙佳美苑
             </a>
@@ -505,6 +507,63 @@
 
 <!-- Scroll to Top -->
 <div id="toTop" class="hidden-phone hidden-tablet">Back to Top</div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">新增</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="txt_departmentname">部门名称</label>
+                    <input type="text" name="txt_departmentname" class="form-control" id="txt_departmentname" placeholder="部门名称">
+                </div>
+                <div class="form-group">
+                    <label for="txt_parentdepartment">上级部门</label>
+                    <input type="text" name="txt_parentdepartment" class="form-control" id="txt_parentdepartment" placeholder="上级部门">
+                </div>
+                <div class="form-group">
+                    <label for="txt_departmentlevel">部门级别</label>
+                    <input type="text" name="txt_departmentlevel" class="form-control" id="txt_departmentlevel" placeholder="部门级别">
+                </div>
+                <div class="form-group">
+                    <label for="txt_statu">描述</label>
+                    <input type="text" name="txt_statu" class="form-control" id="txt_statu" placeholder="状态">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+                <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+        $(function () {
+            $('.showEdit').append('<input type="button" class="edit-button" id="btn_add" value="编辑" >')
+            $('.showEdit').hover(function () {
+                $(this).addClass('show-edit-button');
+                $(this).removeAttr('href');
+                $(".edit-button").show();
+            },function () {
+                $(this).removeClass('show-edit-button');
+                $(".edit-button").hide();
+            })
+
+            //注册新增按钮的事件
+            $("#btn_add").click(function () {
+                $("#myModalLabel").text("新增");
+                $('#myModal').modal();
+            });
+
+        })
+</script>
 
 </body>
 </html>

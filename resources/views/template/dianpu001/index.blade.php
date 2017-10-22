@@ -80,12 +80,12 @@
 
         <!-- Logo
         ================================================== -->
-        <div class="span5 logo">
-            <a href="index.htm" class="showEdit">
+        <div class="span5 logo showEdit">
+            <a href="index.htm" class="editItem">
                 <!--<img src="{{ url('/temp').'/'.$name }}/img/piccolo-logo.png" alt="" />-->
                 康芙佳美苑
             </a>
-            <h5>绿色 - 专业 - 健康 - 美丽</h5>
+            <h5 class="editItem">绿色 - 专业 - 健康 - 美丽</h5>
         </div>
 
         <!-- Main Navigation
@@ -192,11 +192,11 @@
 
         <!-- Headline Text
         ================================================== -->
-        <div class="span4">
-            <h3>欢迎光临康芙佳美苑. <br />
+        <div class="span4 showEdit">
+            <h3 class="editItem">欢迎光临康芙佳美苑. <br />
                 一家专业的养生美容美体会所.</h3>
-            <p class="lead">本店宗旨:专业打造健康美丽出水芙蓉般的佳人</p>
-            <p>本店成立于2010年5月1日，主营养生理疗，美体塑形，专业护肤</p>
+            <p class="lead editItem">本店宗旨:专业打造健康美丽出水芙蓉般的佳人</p>
+            <p class="editItem">本店成立于2010年5月1日，主营养生理疗，美体塑形，专业护肤</p>
             <a href="#"><i class="icon-plus-sign"></i>了解详情</a>
         </div>
     </div><!-- End Headline -->
@@ -514,7 +514,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">新增</h4>
+                <h4 class="modal-title" id="myModalLabel"></h4>
             </div>
             <div class="modal-body">
 
@@ -546,21 +546,25 @@
 
 <script type="text/javascript">
         $(function () {
-            $('.showEdit').append('<input type="button" class="edit-button" id="btn_add" value="编辑" >')
+
             $('.showEdit').hover(function () {
+                var x = $(this).index();
+                $(this).append('<input type="button" class="edit-button" id="btn_edit'+x+'" value="编辑" >');
                 $(this).addClass('show-edit-button');
                 $(this).removeAttr('href');
-                $(".edit-button").show();
+
+                //注册修改按钮的事件
+                $("#btn_edit"+x).click(function () {
+                    $("#myModalLabel").text("修改");
+                    $('#myModal').modal();
+                });
             },function () {
                 $(this).removeClass('show-edit-button');
-                $(".edit-button").hide();
+                var x = $(this).index();
+                $("#btn_edit"+x).remove();
             })
 
-            //注册新增按钮的事件
-            $("#btn_add").click(function () {
-                $("#myModalLabel").text("新增");
-                $('#myModal').modal();
-            });
+
 
         })
 </script>

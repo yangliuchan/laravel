@@ -10,6 +10,7 @@ use App\Template;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Validator;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -122,16 +123,25 @@ class AdminController extends Controller
     }
 
     public function editShop(Request $request){
-
         $user = Auth::user();  // 返回单条记录;
         $company = Company::where('uid','=',$user -> uid) -> first();
         $template = Template::where('id','=',$company -> tid) -> first();
         if($template){
             //dd($template);
-            return view('template.'.$template -> name.'.index')->with('name',$template -> name);
+            $temp_data = DB::table('template_edit') -> where('cid',$company -> cid) -> where('tid',$template -> tid) -> first();
+            return view('template.'.$template -> name.'.index')->with('name',$template -> name,'temp_data',json_encode($temp_data));
 
         }else{
             return view('welcome')->with('msg','dsads');
         }
+    }
+
+    public function editTemplate(Request $request){
+        $post = $request -> input();
+        $user = Auth::user();
+        $company = Company::where('uid','=',$user -> uid) -> first();
+        $company -> tid = $post['tid'];
+        $bool = $company -> save();
+        echo json_encode($bool);
     }
 }

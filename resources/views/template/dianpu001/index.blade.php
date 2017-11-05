@@ -517,22 +517,9 @@
                 <h4 class="modal-title" id="myModalLabel"></h4>
             </div>
             <div class="modal-body">
-
                 <div class="form-group">
                     <label for="txt_departmentname">部门名称</label>
                     <input type="text" name="txt_departmentname" class="form-control" id="txt_departmentname" placeholder="部门名称">
-                </div>
-                <div class="form-group">
-                    <label for="txt_parentdepartment">上级部门</label>
-                    <input type="text" name="txt_parentdepartment" class="form-control" id="txt_parentdepartment" placeholder="上级部门">
-                </div>
-                <div class="form-group">
-                    <label for="txt_departmentlevel">部门级别</label>
-                    <input type="text" name="txt_departmentlevel" class="form-control" id="txt_departmentlevel" placeholder="部门级别">
-                </div>
-                <div class="form-group">
-                    <label for="txt_statu">描述</label>
-                    <input type="text" name="txt_statu" class="form-control" id="txt_statu" placeholder="状态">
                 </div>
             </div>
             <div class="modal-footer">
@@ -557,6 +544,12 @@
                 $("#btn_edit"+x).click(function () {
                     $("#myModalLabel").text("修改");
                     $('#myModal').modal();
+                    switch (x){
+                        case 1:
+                            $('.modal-body').html('dsadsa');
+                            break;
+                    }
+
                 });
             },function () {
                 $(this).removeClass('show-edit-button');

@@ -61,16 +61,15 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
-
     Route::get('info', 'AdminController@corporateInformation');
-    Route::post('info', 'AdminController@postInformation');
-    Route::post('changePassword', 'AdminController@changePassword');
-
     Route::get('template','AdminController@selectTemplate');
+    Route::get('shop','AdminController@editShop');
 
     Route::post('changeTemplate','AdminController@changeTemplate');
+    Route::post('info', 'AdminController@postInformation');
+    Route::post('changePassword', 'AdminController@changePassword');
+    Route::post('editPassword', 'AdminController@editTemplate');
 
-    Route::get('shop','AdminController@editShop');
 
     Route::get('prompt','PromptController@index');
 

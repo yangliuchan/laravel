@@ -122,6 +122,9 @@ class AdminController extends Controller
         echo json_encode($bool);
     }
 
+    /**
+    编辑店铺模板
+     **/
     public function editShop(Request $request){
         $user = Auth::user();  // 返回单条记录;
         $company = Company::where('uid','=',$user -> uid) -> first();
@@ -129,7 +132,14 @@ class AdminController extends Controller
         if($template){
             //dd($template);
             $temp_data = DB::table('template_edit') -> where('cid',$company -> cid) -> where('tid',$template -> tid) -> first();
-            return view('template.'.$template -> name.'.index')->with('name',$template -> name,'temp_data',json_encode($temp_data));
+            $temp_data = array(
+                'title1' => '正标题',
+                'title2' => '副标题'
+            );
+            return view('template.'.$template -> name.'.index')->with([
+                'name' => $template -> name,
+                'temp_data' => json_encode($temp_data)
+            ]);
 
         }else{
             return view('welcome')->with('msg','dsads');

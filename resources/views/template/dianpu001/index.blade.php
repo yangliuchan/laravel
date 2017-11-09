@@ -7,7 +7,6 @@
 
     <!-- CSS
     ================================================== -->
-    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ url('/temp').'/'.$name }}/css/bootstrap.css">
     <link rel="stylesheet" href="{{ url('/temp').'/'.$name }}/css/bootstrap-responsive.css">
     <link rel="stylesheet" href="{{ url('/temp').'/'.$name }}/css/prettyPhoto.css" />
@@ -69,7 +68,7 @@
 
 </head>
 
-<body class="home">
+<body class="home">{{ $temp_data }}
 <!-- Color Bars (above header)-->
 <div class="color-bar-1"></div>
 <div class="color-bar-2 color-bg"></div>
@@ -530,10 +529,11 @@
     </div>
 </div>
 
-
 <script type="text/javascript">
         $(function () {
-
+            var json = decodeURI('{{ $temp_data }}');
+            //console.log(JSON.parse(json));
+            console.log(json);
             $('.showEdit').hover(function () {
                 var x = $(this).index();
                 $(this).append('<input type="button" class="edit-button" id="btn_edit'+x+'" value="编辑" >');
@@ -545,9 +545,14 @@
                     $("#myModalLabel").text("修改");
                     $('#myModal').modal();
                     switch (x){
-                        case 1:
-                            $('.modal-body').html('dsadsa');
+                        case 0:
+                            $('.modal-body').html('0000');
                             break;
+                        case 1:
+                            $('.modal-body').html('111');
+                            break;
+                        case 2:
+                            $('.modal-body').html('2222')
                     }
 
                 });

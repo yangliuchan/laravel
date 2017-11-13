@@ -1,0 +1,7 @@
+#link,#link h1,.link h2,.link h3{
+    font-size: 0.8em;
+}
+h1,h2,h3{
+    font-size: 100%;
+    display: inline;
+}
